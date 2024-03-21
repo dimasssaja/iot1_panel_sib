@@ -1,0 +1,37 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Coba API",
+        "description": "Lorem duis consectetur incididunt Lorem esse id. Minim nulla mollit minim esse eiusmod laboris ad nostrud elit qui elit nisi aliquip. Magna reprehenderit aliqua eu consequat laborum culpa anim anim consequat laborum consectetur velit voluptate enim. Reprehenderit qui commodo enim veniam do. Ea amet magna fugiat ullamco et pariatur ipsum commodo.",
+        "version": "1.0.0"
+    },
+    "host": "reqres.in",
+    "basePath": "/api",
+    "schemes": [
+        "https"
+    ],
+    "tags": [
+        {
+            "name": "Colors",
+            "description": "Everything about your Colors"
+        }
+    ],
+    "paths":{
+        "/colors": {
+            "get": {
+                "tags": [
+                    "Colors"
+                ],
+                "summary": "Ambil semua warna",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    }
+}

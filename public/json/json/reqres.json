@@ -1,0 +1,1072 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Documentation IOT-PANEL",
+        "description": "API ini memandu pengguna dalam menggunakan aplikasi panel IoT untuk mendokumentasikan API secara efisien. [Link ini merupakan json collection pada dokumentasi ini](https://panel-iot.arkatama.id/postman-collection.json) Pengguna dapat belajar konfigurasi dasar, penjelasan endpoint, parameter, dan respons yang diharapkan. API menyediakan contoh penggunaan sebagai panduan awal. Disarankan untuk memahami konsep dasar Swagger dan merujuk ke dokumentasi resmi untuk kasus penggunaan kompleks. Dikembangkan oleh Arkatama.",
+        "version": "1.0.0"
+      },
+    "servers": [
+      {
+        "url": "https://panel-iot.arkatama.id"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Auth"
+      },
+      {
+        "name": "Device"
+      },
+      {
+        "name": "Sensors"
+      },
+      {
+        "name": "Lamp"
+      },
+      {
+        "name": "Sensor Log"
+      },
+      {
+        "name": "Users"
+      }
+
+    ],
+    "paths": {
+      "/api/v1/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "example": "ria@gmail.com"
+                    },
+                    "password": {
+
+                      "type": "string",
+                      "format": "password",
+                      "example": "123"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/v1/auth/logout": {
+        "post": {
+          "tags": ["Auth"],
+          "summary": "Logout User",
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "Logout berhasil"
+            },
+            "404": {
+              "description": "users not found"
+            }
+          },
+          "parameters": [
+            {
+              "name": "Authorization",
+              "in": "header",
+              "required": true,
+              "description": "Bearer token for authentication",
+              "type": "string"
+            }
+          ],
+          "security": [
+            {
+              "Bearer": []
+            }
+          ]
+        }
+      },
+      "/api/v1/devices": {
+        "get": {
+          "tags": [
+            "Device"
+          ],
+          "summary": "GET Devices",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Device"
+          ],
+          "summary": "POST Devices",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "query",
+              "required": true,
+              "description": "Device name",
+              "type": "string"
+            },
+            {
+              "name": "code",
+              "in": "query",
+              "required": true,
+              "description": "Device code",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/devices/{code}": {
+        "put": {
+          "tags": [
+            "Device"
+          ],
+          "summary": "Edit Device",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "DVC_001",
+              "description": "Device codes for request parameter"
+            },
+            {
+              "name": "name",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "example": "Device 1",
+              "description": "Device name"
+            },
+            {
+              "name": "code",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "example": "DVC_001",
+              "description": "Device code for change"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Device"
+          ],
+          "summary": "Delete Devices",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "DVC_001",
+              "description": "Device codes for request parameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/devices/{code}/ping": {
+        "get": {
+          "tags": [
+            "Device"
+          ],
+          "summary": "Ping Devices",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "DVC_001",
+              "description": "Device codes for request parameter"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/sensors": {
+        "get": {
+          "tags": [
+            "Sensors"
+          ],
+          "summary": "GET Sensors",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Sensors"
+          ],
+          "summary": "POST Sensors",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "example": "TMP_005"
+                    },
+                    "device_id": {
+                      "type": "integer",
+                      "example": "2"
+                    },
+                    "name": {
+                      "type": "string",
+                      "example": "Sensor Temperature 5"
+                    },
+                    "sensor_type": {
+                      "type": "string",
+                      "example": "TEMPERATURE"
+                    },
+                    "pin": {
+                      "type": "string",
+                      "example": "E12"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/sensors/{code}": {
+        "get": {
+          "tags": [
+            "Sensors"
+          ],
+          "summary": "GET Detail Sensors",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "TMP_005",
+              "description": "Sensor codes"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "put": {
+          "tags": [
+            "Sensors"
+          ],
+          "summary": "PUT Sensors",
+          "produces": ["application/json"],
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "TMP_005",
+              "description": "Code sensors for request parameter"
+            },
+            {
+              "name": "code",
+              "in": "query",
+              "required": true,
+              "type": "string",
+              "example": "TMP_005",
+              "description": "Code of the sensors for change"
+            },
+            {
+              "name": "name",
+              "in": "query",
+              "required": true,
+              "example": "Sensor Temperature 5",
+              "description": "Sensors name",
+              "type": "string"
+            },
+            {
+              "name": "device_id",
+              "in": "query",
+              "required": true,
+              "description": "Device id",
+              "type": "integer"
+            },
+            {
+              "name": "sensor_type",
+              "in": "query",
+              "required": true,
+              "description": "Sensors type",
+              "type": "string",
+              "example": "TEMPERATURE/HUMIDITY/RAIN/LIGHT"
+            },
+            {
+              "name": "pin",
+              "in": "query",
+              "required": true,
+              "description": "Sensors pin",
+              "example": "E12",
+              "type": "string"
+            },
+            {
+              "name": "input_mode",
+              "in": "query",
+              "description": "Sensors input mode",
+              "type": "string",
+              "example": "analog/digital"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "delete": {
+            "tags": ["Sensors"],
+            "summary": "DELETE Sensors",
+            "parameters": [
+              {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "TMP_005",
+                "description": "Code of the sensor to be deleted"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {}
+                }
+              }
+            }
+          }
+      },
+      "/api/v1/sensors/logs": {
+        "post": {
+          "tags": [
+            "Sensors"
+          ],
+          "summary": "Bulk Insert",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": [
+                    {
+                      "code": "TMP_001",
+                      "value": 28
+                    },
+                    {
+                      "code": "TMP_001",
+                      "value": 29
+                    },
+                    {
+                      "code": "TMP_001",
+                      "value": 30
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/lamps": {
+        "get": {
+          "tags": [
+            "Lamp"
+          ],
+          "summary": "GET Lamps",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Lamp"
+          ],
+          "summary": "POST Lamps",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "Lampu Satu",
+                    "code": "LMP_001",
+                    "mode": "MANUAL",
+                    "lamp_type": "RGB",
+                    "status": "0",
+                    "pin": "E8",
+                    "data": [
+                      {
+                        "lamp": {
+                          "mode": "CUSTOM",
+                          "schedule": {
+                            "on": "00:00",
+                            "off": "00:00"
+                          },
+                          "brightness": 0,
+                          "color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0
+                          },
+                          "light_sensor": {
+                            "on": 0,
+                            "off": 0
+                          },
+                          "days": [
+                            {
+                              "day": 0,
+                              "name": "Sunday",
+                              "mode": "SCHEDULE",
+                              "schedule": {
+                                "on": "00:00",
+                                "off": "00:00"
+                              },
+                              "light_sensor": {
+                                "on": 0,
+                                "off": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/lamps/{code}": {
+        "put": {
+          "tags": [
+            "Lamp"
+          ],
+          "summary": "PUT Lamps",
+          "parameters": [
+            {
+              "name": "code",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "LMP_001",
+              "description": "Lamp codes for request parameter"
+            }
+        ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "name": "Lampu Dua",
+                    "edit_code": "{{code}}",
+                    "edit_mode_lampu{{code}}": "MANUAL",
+                    "lamp_type": "RGB",
+                    "status": "0",
+                    "pin": "E8",
+                    "data": [
+                      {
+                        "lamp": {
+                          "mode": "CUSTOM",
+                          "schedule": {
+                            "on": "00:00",
+                            "off": "00:00"
+                          },
+                          "brightness": 0,
+                          "color": {
+                            "r": 0,
+                            "g": 0,
+                            "b": 0
+                          },
+                          "light_sensor": {
+                            "on": 0,
+                            "off": 0
+                          },
+                          "days": [
+                            {
+                              "day": 0,
+                              "name": "Sunday",
+                              "mode": "SCHEDULE",
+                              "schedule": {
+                                "on": "00:00",
+                                "off": "00:00"
+                              },
+                              "light_sensor": {
+                                "on": 0,
+                                "off": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "get": {
+            "tags": [
+              "Lamp"
+            ],
+            "summary": "GET Detail Lamps",
+            "parameters": [
+              {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "LMP_001",
+                "description": "Lamp codes"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {}
+                }
+              }
+            }
+          },
+          "delete": {
+            "tags": [
+              "Lamp"
+            ],
+            "summary": "DELETE Lamps",
+            "parameters": [
+              {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "LMP_001",
+                "description": "Lamp codes for request parameter"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {}
+                }
+              }
+            }
+          }
+      },
+      "/api/v1/lamps/{code}/customize": {
+        "put": {
+          "tags": [
+            "Lamp"
+          ],
+          "summary": "Edit Customize",
+            "parameters": [
+                {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "LMP_001",
+                "description": "Lamp codes for request parameter"
+                }
+            ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "lamp_type": "RGB",
+                    "mode": "MANUAL",
+                    "name": "Lampu Dua",
+                    "custom_mode_lampu0": "MANUAL",
+                    "waktuMulai0": null,
+                    "waktuSelesai0": null,
+                    "custom_mode_lampu1": "MANUAL",
+                    "waktuMulai1": null,
+                    "waktuSelesai1": null,
+                    "custom_mode_lampu2": "MANUAL",
+                    "waktuMulai2": null,
+                    "waktuSelesai2": null,
+                    "custom_mode_lampu3": "MANUAL",
+                    "waktuMulai3": null,
+                    "waktuSelesai3": null,
+                    "custom_mode_lampu4": "MANUAL",
+                    "waktuMulai4": null,
+                    "waktuSelesai4": null,
+                    "custom_mode_lampu5": "MANUAL",
+                    "waktuMulai5": null,
+                    "waktuSelesai5": null,
+                    "custom_mode_lampu6": "MANUAL",
+                    "waktuMulai6": null,
+                    "waktuSelesai6": null
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/lamps/bulk": {
+        "post": {
+          "tags": [
+            "Lamp"
+          ],
+          "summary": "Bulk Insert",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": [
+                    {
+                      "code": "LGHT-001",
+                      "status": 1
+                    },
+                    {
+                      "code": "MNL-001",
+                      "status": 0
+                    },
+                    {
+                      "code": "LGHT-001",
+                      "status": 1
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/lamps/{code}/toogle": {
+        "post": {
+          "tags": [
+            "Lamp"
+          ],
+          "summary": "Toogle Lamps",
+            "parameters": [
+                {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "LMP_001",
+                "description": "Lamp codes for request parameter"
+                }
+            ],
+          "requestBody": {
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": "1"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/sensors/{code}/logs": {
+        "get": {
+          "tags": [
+            "Sensor Log"
+          ],
+          "summary": "GET Sensor Log",
+            "parameters": [
+                {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "TMP_001",
+                "description": "Sensor codes"
+                }
+            ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "post": {
+            "tags": [
+              "Sensor Log"
+            ],
+            "summary": "POST Sensor Log",
+            "parameters": [
+              {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "TMP_001",
+                "description": "Sensor codes"
+              }
+            ],
+            "requestBody": {
+              "content": {
+                "multipart/form-data": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "value": {
+                        "type": "integer",
+                        "example": "90"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {}
+                }
+              }
+            }
+          },
+          "delete": {
+            "tags": [
+              "Sensor Log"
+            ],
+            "summary": "DELETE Sensor Log",
+            "parameters": [
+              {
+                "name": "code",
+                "in": "path",
+                "required": true,
+                "type": "string",
+                "example": "TMP_001",
+                "description": "Sensor codes"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {}
+                }
+              }
+            }
+          }
+      },
+      "/api/v1/users": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "GET Users",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "POST Users",
+          "requestBody": {
+            "content": {
+              "multipart/form-data": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "User test",
+                      "required": true
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "usertest@gmail.com",
+                      "required": true
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "Dhimas123",
+                      "required": true,
+                      "format": "password"
+                    },
+                    "password_confirmation": {
+                      "type": "string",
+                      "example": "Dhimas123",
+                      "required": true,
+                      "format": "password"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "delete": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "DELETE Users",
+            "parameters": [
+                {
+                "name": "id",
+                "in": "query",
+                "required": true,
+                "type": "integer",
+                "example": "1",
+                "description": "User id for request parameter"
+                }
+            ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/v1/users/{id}": {
+        "get": {
+          "tags": [
+            "Users"
+          ],
+          "summary": "GET Details User",
+            "parameters": [
+                {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "type": "integer",
+                "example": "1",
+                "description": "User id for request parameter"
+                }
+            ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        },
+        "put": {
+            "tags": [
+              "Users"
+            ],
+            "summary": "UPDATE Users",
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "integer",
+                    "example": "1",
+                    "description": "User id for request parameter"
+                },
+                {
+                    "name": "name",
+                    "in": "query",
+                    "required": true,
+                    "type": "string",
+                    "example": "User test",
+                    "description": "User name"
+                },
+                {
+                    "name": "email",
+                    "in": "query",
+                    "required": true,
+                    "type": "string",
+                    "example": "email@gmail.com"
+                },
+                {
+                    "name": "password",
+                    "in": "query",
+                    "description": "Password min 8 characters",
+                    "type": "string",
+                    "format": "password"
+                },
+                {
+                    "name": "password_confirmation",
+                    "in": "query",
+                    "description": "Password confirmation admin",
+                    "type": "string",
+                    "format": "password"
+                }
+            ],
+            "responses": {
+              "200": {
+                "description": "Successful response",
+                "content": {
+                  "application/json": {}
+                }
+              }
+            }
+          }
+      }
+    }
+  }

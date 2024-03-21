@@ -1,0 +1,903 @@
+{
+	"info": {
+		"_postman_id": "7c1ed7f1-752c-41c3-80ef-82583ce8b943",
+		"name": "IOT-PANEL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29448024"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "admin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "17|JHdaqbtyAtyGAgL2QT1156PzigsIOtXUAU0Nnn92d4c0a0e6",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/auth/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sensors",
+			"item": [
+				{
+					"name": "GET Sensors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Sensors",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "code",
+									"value": "TMP_005",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Sensor Temperature 5",
+									"type": "text"
+								},
+								{
+									"key": "sensor_type",
+									"value": "TEMPERATURE",
+									"type": "text"
+								},
+								{
+									"key": "pin",
+									"value": "E12",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Sensors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/TMP_005",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"TMP_005"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Sensors",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/TMP_003",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"TMP_003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Sensors",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "code",
+									"value": "TMP_005",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Testerrr",
+									"type": "text"
+								},
+								{
+									"key": "sensor_type",
+									"value": "LIGHT",
+									"type": "text"
+								},
+								{
+									"key": "pin",
+									"value": "E9",
+									"type": "text"
+								},
+								{
+									"key": "input_mode",
+									"value": "analog",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/TMP_005",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"TMP_005"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"code\" : \"TMP_001\",\r\n        \"value\": 28\r\n    },\r\n     {\r\n        \"code\" : \"TMP_001\",\r\n        \"value\": 29\r\n    },\r\n     {\r\n        \"code\" : \"TMP_001\",\r\n        \"value\": 30\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Lamp",
+			"item": [
+				{
+					"name": "GET Lamps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps?order=code",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps"
+							],
+							"query": [
+								{
+									"key": "order",
+									"value": "code"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Lamps",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Lampu Satu\",\r\n  \"code\": \"LMP_001\",\r\n  \"mode\": \"MANUAL\",\r\n  \"lamp_type\": \"RGB\",\r\n  \"status\": \"0\",\r\n  \"pin\": \"E8\",\r\n  \"data\": [\r\n    {\r\n      \"lamp\": {\r\n        \"mode\": \"CUSTOM\",\r\n        \"schedule\": {\r\n          \"on\": \"00:00\",\r\n          \"off\": \"00:00\"\r\n        },\r\n        \"brightness\": 0,\r\n        \"color\": {\r\n          \"r\": 0,\r\n          \"g\": 0,\r\n          \"b\": 0\r\n        },\r\n        \"light_sensor\": {\r\n          \"on\": 0,\r\n          \"off\": 0\r\n        },\r\n        \"days\": [\r\n          {\r\n            \"day\": 0,\r\n            \"name\": \"Sunday\",\r\n            \"mode\": \"SCHEDULE\",\r\n            \"schedule\": {\r\n              \"on\": \"00:00\",\r\n              \"off\": \"00:00\"\r\n            },\r\n            \"light_sensor\": {\r\n              \"on\": 0,\r\n              \"off\": 0\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Lamps",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Lampu Dua\",\r\n  \"edit_code\": \"009\",\r\n  \"edit_mode_lampu009\": \"MANUAL\",\r\n  \"lamp_type\": \"RGB\",\r\n  \"status\": \"0\",\r\n  \"pin\": \"E8\",\r\n  \"data\": [\r\n    {\r\n      \"lamp\": {\r\n        \"mode\": \"CUSTOM\",\r\n        \"schedule\": {\r\n          \"on\": \"00:00\",\r\n          \"off\": \"00:00\"\r\n        },\r\n        \"brightness\": 0,\r\n        \"color\": {\r\n          \"r\": 0,\r\n          \"g\": 0,\r\n          \"b\": 0\r\n        },\r\n        \"light_sensor\": {\r\n          \"on\": 0,\r\n          \"off\": 0\r\n        },\r\n        \"days\": [\r\n          {\r\n            \"day\": 0,\r\n            \"name\": \"Sunday\",\r\n            \"mode\": \"SCHEDULE\",\r\n            \"schedule\": {\r\n              \"on\": \"00:00\",\r\n              \"off\": \"00:00\"\r\n            },\r\n            \"light_sensor\": {\r\n              \"on\": 0,\r\n              \"off\": 0\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps/009",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps",
+								"009"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Detail Lamps",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps/LMP_003",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps",
+								"LMP_003"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Lamps",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps/LMP-002",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps",
+								"LMP-002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Customize",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"lamp_type\": \"RGB\",\r\n  \"mode\": \"MANUAL\",\r\n  \"name\": \"Lampu Dua\",\r\n  \"custom_mode_lampu0\": \"MANUAL\",\r\n  \"waktuMulai0\": null,\r\n  \"waktuSelesai0\": null,\r\n  \"custom_mode_lampu1\": \"MANUAL\",\r\n  \"waktuMulai1\": null,\r\n  \"waktuSelesai1\": null,\r\n  \"custom_mode_lampu2\": \"MANUAL\",\r\n  \"waktuMulai2\": null,\r\n  \"waktuSelesai2\": null,\r\n  \"custom_mode_lampu3\": \"MANUAL\",\r\n  \"waktuMulai3\": null,\r\n  \"waktuSelesai3\": null,\r\n  \"custom_mode_lampu4\": \"MANUAL\",\r\n  \"waktuMulai4\": null,\r\n  \"waktuSelesai4\": null,\r\n  \"custom_mode_lampu5\": \"MANUAL\",\r\n  \"waktuMulai5\": null,\r\n  \"waktuSelesai5\": null,\r\n  \"custom_mode_lampu6\": \"MANUAL\",\r\n  \"waktuMulai6\": null,\r\n  \"waktuSelesai6\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps/009/customize",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps",
+								"009",
+								"customize"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bulk Insert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"code\" : \"LGHT-001\",\r\n        \"status\" : 1\r\n    },\r\n    {\r\n        \"code\" : \"MNL-001\",\r\n        \"status\" : 0\r\n    },\r\n    {\r\n        \"code\" : \"LGHT-001\",\r\n        \"status\" : 1\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps/bulk",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Toogle Lamps",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "status",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/lamps/SKLR-003/toogle",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"lamps",
+								"SKLR-003",
+								"toogle"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sensor Log",
+			"item": [
+				{
+					"name": "GET Sensor Log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/TMP_001/logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"TMP_001",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Sensor Log",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "value",
+									"value": "90",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/RIN_001/logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"RIN_001",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Sensor Log",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/sensors/HMD-001/logs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"sensors",
+								"HMD-001",
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "GET Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Details User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Dhimas Wahyu",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "dhimas@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Dhimas123",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "Dhimas123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE Users",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "adminIOT",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "users@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "4",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Device",
+			"item": [
+				{
+					"name": "POST Devices",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Device satu",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "DVC_001",
+									"type": "text"
+								},
+								{
+									"key": "last_ping",
+									"value": "2018-12-25 23:50:55.999",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/devices",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Devices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/devices",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"devices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Device",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Device Baru",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "DVC_001",
+									"type": "text"
+								},
+								{
+									"key": "last_ping",
+									"value": "2018-12-25 23:50:55.999",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/devices/DVC_001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"devices",
+								"DVC_001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Devices",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/devices/DVC_001",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"devices",
+								"DVC_001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping Devices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v1/devices/DVC_001/ping",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"devices",
+								"DVC_001",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
