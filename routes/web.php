@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SaklarController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TemperatureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,5 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('/', 'index')->name('login');
 });
 
+Route::get('/temperatures',[TemperatureController::class,'index'])
+->name('temperatures');
